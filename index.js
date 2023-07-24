@@ -68,23 +68,36 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Fifth Query ==================>
   // <================== Find all the female students from grade X section A who scored less than 25 in all subjects ==================>
-  const studentsList = await student.find({
-    gender: "Female",
-    class: "X",
-    section: "A",
-    maths: { $lt: 25 },
-    science: { $lt: 25 },
-    english: { $lt: 25 },
-  });
+  //   const studentsList = await student.find({
+  //     gender: "Female",
+  //     class: "X",
+  //     section: "A",
+  //     maths: { $lt: 25 },
+  //     science: { $lt: 25 },
+  //     english: { $lt: 25 },
+  //   });
+  //   const students = await student
+  //     .find({
+  //       gender: "Female",
+  //       class: "X",
+  //       section: "A",
+  //       maths: { $lt: 25 },
+  //       science: { $lt: 25 },
+  //       english: { $lt: 25 },
+  //     })
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Sixth Query ==================>
+  // <================== Top 3 students in grade V based on maths score ==================>
+  const studentsList = await student
+    .find({ class: "V" })
+    .sort({ maths: -1 })
+    .limit(3);
   const students = await student
-    .find({
-      gender: "Female",
-      class: "X",
-      section: "A",
-      maths: { $lt: 25 },
-      science: { $lt: 25 },
-      english: { $lt: 25 },
-    })
+    .find({ class: "V" })
+    .sort({ maths: -1 })
+    .limit(3)
     .count();
   res.status(200).send(studentsList);
   console.log(students);
