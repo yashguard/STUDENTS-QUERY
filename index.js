@@ -36,14 +36,32 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Third Query ==================>
   // <================== Count of all students who scored between 50 and 75 marks in maths and English ==================>
+  //   const studentsList = await student.find({
+  //     maths: { $gt: 50, $lt: 75 },
+  //     english: { $gt: 50, $lt: 75 },
+  //   });
+  //   const students = await student
+  //     .find({
+  //       maths: { $gt: 50, $lt: 75 },
+  //       english: { $gt: 50, $lt: 75 },
+  //     })
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Fourth Query ==================>
+  // <================== Count of students from class I to class V who score more than 50 in all subjects ==================>
   const studentsList = await student.find({
-    maths: { $gt: 50, $lt: 75 },
-    english: { $gt: 50, $lt: 75 },
+    class: { $gte: "I", $lte: "IV" },
+    maths: { $gt: 50 },
+    science: { $gt: 50 },
+    english: { $gt: 50 },
   });
   const students = await student
     .find({
-      maths: { $gt: 50, $lt: 75 },
-      english: { $gt: 50, $lt: 75 },
+      class: { $gte: "I", $lte: "IV" },
+      maths: { $gt: 50 },
+      science: { $gt: 50 },
+      english: { $gt: 50 },
     })
     .count();
   res.status(200).send(studentsList);
