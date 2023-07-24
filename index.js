@@ -167,16 +167,31 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Eleventh Query ==================>
   // <================== Students who will fall on page 5 if ordered by decreasing order of science scores (Assume 20 results per page) ==================>
+  //   const studentsList = await student
+  //     .find()
+  //     .sort({ science: -1 })
+  //     .skip(80)
+  //     .limit(20);
+  //   const students = await student
+  //     .find()
+  //     .sort({ science: -1 })
+  //     .skip(80)
+  //     .limit(20)
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Twelth Query ==================>
+  // <================== Female Students who will fall on page 4 if ordered by increasing order of science scores and maths scores (Assume 5 results per page) ==================>
   const studentsList = await student
-    .find()
-    .sort({ science: -1 })
-    .skip(80)
-    .limit(20);
+    .find({ gender: "Female" })
+    .sort({ maths: 1, science: 1 })
+    .skip(15)
+    .limit(5);
   const students = await student
-    .find()
-    .sort({ science: -1 })
-    .skip(80)
-    .limit(20)
+    .find({ gender: "Female" })
+    .sort({ maths: 1, science: 1 })
+    .skip(15)
+    .limit(5)
     .count();
   res.status(200).send(studentsList);
   console.log(students);
