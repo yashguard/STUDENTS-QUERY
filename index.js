@@ -50,18 +50,40 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Fourth Query ==================>
   // <================== Count of students from class I to class V who score more than 50 in all subjects ==================>
+  //   const studentsList = await student.find({
+  //     class: { $gte: "I", $lte: "IV" },
+  //     maths: { $gt: 50 },
+  //     science: { $gt: 50 },
+  //     english: { $gt: 50 },
+  //   });
+  //   const students = await student
+  //     .find({
+  //       class: { $gte: "I", $lte: "IV" },
+  //       maths: { $gt: 50 },
+  //       science: { $gt: 50 },
+  //       english: { $gt: 50 },
+  //     })
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Fifth Query ==================>
+  // <================== Find all the female students from grade X section A who scored less than 25 in all subjects ==================>
   const studentsList = await student.find({
-    class: { $gte: "I", $lte: "IV" },
-    maths: { $gt: 50 },
-    science: { $gt: 50 },
-    english: { $gt: 50 },
+    gender: "Female",
+    class: "X",
+    section: "A",
+    maths: { $lt: 25 },
+    science: { $lt: 25 },
+    english: { $lt: 25 },
   });
   const students = await student
     .find({
-      class: { $gte: "I", $lte: "IV" },
-      maths: { $gt: 50 },
-      science: { $gt: 50 },
-      english: { $gt: 50 },
+      gender: "Female",
+      class: "X",
+      section: "A",
+      maths: { $lt: 25 },
+      science: { $lt: 25 },
+      english: { $lt: 25 },
     })
     .count();
   res.status(200).send(studentsList);
