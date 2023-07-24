@@ -103,17 +103,35 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Seventh Query ==================>
   // <================== Bottom 5 students in grade I based on science score ==================>
-  const studentsList = await student
-    .find({ class: "I" })
-    .sort({ science: 1 })
-    .limit(5);
-  const students = await student
-    .find({ class: "I" })
-    .sort({ science: 1 })
-    .limit(5)
-    .count();
-  res.status(200).send(studentsList);
-  console.log(students);
+//   const studentsList = await student
+//     .find({ class: "I" })
+//     .sort({ science: 1 })
+//     .limit(5);
+//   const students = await student
+//     .find({ class: "I" })
+//     .sort({ science: 1 })
+//     .limit(5)
+//     .count();
+//   res.status(200).send(studentsList);
+//   console.log(students);
+  // <================== Eighth Query ==================>
+  // <================== Students from section A who scored less than 50 in all the subjects ==================>
+    const studentsList = await student.find({
+      section: "A",
+      maths: { $lt: 50 },
+      science: { $lt: 50 },
+      english: { $lt: 50 },
+    });
+    const students = await student
+      .find({
+        section: "A",
+        maths: { $lt: 50 },
+        science: { $lt: 50 },
+        english: { $lt: 50 },
+      })
+      .count();
+    res.status(200).send(studentsList);
+    console.log(students);
 });
 
 server.listen(8010, () => {
