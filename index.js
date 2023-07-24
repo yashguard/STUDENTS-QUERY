@@ -134,19 +134,34 @@ server.post("/student", async (req, res) => {
   // console.log(students);
   // <================== Ninth Query ==================>
   // <================== Students from section C who scored more than 75 in all the subjects ==================>
-  const studentsList = await student.find({
-    section: "C",
-    maths: { $gt: 75 },
-    science: { $gt: 75 },
-    english: { $gt: 75 },
-  });
+  //   const studentsList = await student.find({
+  //     section: "C",
+  //     maths: { $gt: 75 },
+  //     science: { $gt: 75 },
+  //     english: { $gt: 75 },
+  //   });
+  //   const students = await student
+  //     .find({
+  //       section: "C",
+  //       maths: { $gt: 75 },
+  //       science: { $gt: 75 },
+  //       english: { $gt: 75 },
+  //     })
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Tenth Query ==================>
+  // <================== Students who will fall on page 3 if ordered by increasing order of maths scores (Assume 10 results per page) ==================>
+  const studentsList = await student
+    .find()
+    .sort({ maths: 1 })
+    .skip(20)
+    .limit(10);
   const students = await student
-    .find({
-      section: "C",
-      maths: { $gt: 75 },
-      science: { $gt: 75 },
-      english: { $gt: 75 },
-    })
+    .find()
+    .sort({ maths: 1 })
+    .skip(20)
+    .limit(10)
     .count();
   res.status(200).send(studentsList);
   console.log(students);
