@@ -180,18 +180,33 @@ server.post("/student", async (req, res) => {
   //     .count();
   //   res.status(200).send(studentsList);
   //   console.log(students);
-  // <================== Twelth Query ==================>
+  // <================== Twelfth Query ==================>
   // <================== Female Students who will fall on page 4 if ordered by increasing order of science scores and maths scores (Assume 5 results per page) ==================>
+  //   const studentsList = await student
+  //     .find({ gender: "Female" })
+  //     .sort({ maths: 1, science: 1 })
+  //     .skip(15)
+  //     .limit(5);
+  //   const students = await student
+  //     .find({ gender: "Female" })
+  //     .sort({ maths: 1, science: 1 })
+  //     .skip(15)
+  //     .limit(5)
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Thirteenth Query ==================>
+  // <================== Male Students who will fall on page 3 if ordered by decreasing order of science, maths and English scores (Assume 15 results per page) ==================>
   const studentsList = await student
-    .find({ gender: "Female" })
-    .sort({ maths: 1, science: 1 })
-    .skip(15)
-    .limit(5);
+    .find({ gender: "Male" })
+    .sort({ maths: -1, science: -1, english: -1 })
+    .skip(30)
+    .limit(15);
   const students = await student
-    .find({ gender: "Female" })
-    .sort({ maths: 1, science: 1 })
-    .skip(15)
-    .limit(5)
+    .find({ gender: "Male" })
+    .sort({ maths: -1, science: -1, english: -1 })
+    .skip(30)
+    .limit(15)
     .count();
   res.status(200).send(studentsList);
   console.log(students);
