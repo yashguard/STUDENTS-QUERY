@@ -90,14 +90,27 @@ server.post("/student", async (req, res) => {
   //   console.log(students);
   // <================== Sixth Query ==================>
   // <================== Top 3 students in grade V based on maths score ==================>
+  //   const studentsList = await student
+  //     .find({ class: "V" })
+  //     .sort({ maths: -1 })
+  //     .limit(3);
+  //   const students = await student
+  //     .find({ class: "V" })
+  //     .sort({ maths: -1 })
+  //     .limit(3)
+  //     .count();
+  //   res.status(200).send(studentsList);
+  //   console.log(students);
+  // <================== Seventh Query ==================>
+  // <================== Bottom 5 students in grade I based on science score ==================>
   const studentsList = await student
-    .find({ class: "V" })
-    .sort({ maths: -1 })
-    .limit(3);
+    .find({ class: "I" })
+    .sort({ science: 1 })
+    .limit(5);
   const students = await student
-    .find({ class: "V" })
-    .sort({ maths: -1 })
-    .limit(3)
+    .find({ class: "I" })
+    .sort({ science: 1 })
+    .limit(5)
     .count();
   res.status(200).send(studentsList);
   console.log(students);
