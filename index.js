@@ -10,15 +10,35 @@ server.get("/", async (req, res) => {
 });
 
 server.post("/student", async (req, res) => {
-  // ================== First Query ==================
+  // <================== First Query ==================>
+  // <================== Count of all the female students ==================>
 
-  //   const gender = await student.find({gender : req.query.gender});
-  //   const gender = await student.find({gender : req.query.gender}).count();
-  //   console.log(gender)
+  //   const studentsList = await student.find({gender : req.query.gender});
+  //   const students = await student.find({gender : req.query.gender}).count();
+  //   console.log(students);
+  //   res.status(200).send(studentsList)
 
-  // ================== Second Query ==================
 
-  res.send("Done");
+  // <================== Second Query ==================>
+  // <================== Count of all male students who scored more than 85 in maths, science and English ==================>
+
+//   const studentsList = await student.find({
+//     gender: req.query.gender,
+//     maths: { $gt: 85 },
+//     science: { $gt: 85 },
+//     english: { $gt: 85 },
+//   });
+//   const students = await student
+//     .find({
+//       gender: req.query.gender,
+//       maths: { $gt: 85 },
+//       science: { $gt: 85 },
+//       english: { $gt: 85 },
+//     })
+//     .count();
+//   console.log(students);
+
+  res.status(200).send(studentsList);
 });
 
 server.listen(8010, () => {
